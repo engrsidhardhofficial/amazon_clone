@@ -7,13 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        amazon: {
-          background: "#EAEDED",
-          light_blue: "#232F3E",
-          yellow: "#FEBD69",
-          default: "#131921",
-        }
-      }
+        'neon-blue': '#00f3ff',
+        'neon-purple': '#bc13fe',
+        'dark-bg': '#0a0a0a',
+        'glass': 'rgba(255, 255, 255, 0.1)',
+      },
     },
   },
   plugins: [],

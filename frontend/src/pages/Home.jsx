@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Hero from '../components/Hero';
+import Hero3D from '../components/Hero3D';
 import ProductCard from '../components/ProductCard';
 import axios from '../axios';
+import { motion } from 'framer-motion';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -15,12 +16,30 @@ const Home = () => {
         fetchData();
     }, []);
 
-    return (
-        <div className="bg-gray-100">
-            <Hero />
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
 
-            <div className="max-w-screen-2xl mx-auto">
-                <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto -mt-10 z-20 relative">
+    return (
+        <div className="bg-dark-bg min-h-screen">
+            <Hero3D />
+
+            <div className="max-w-screen-2xl mx-auto px-6 py-10">
+                <h2 className="text-3xl font-bold text-white mb-8 border-l-4 border-neon-blue pl-4">
+                    Trending Products
+                </h2>
+                <motion.div
+                    variants={container}
+                    initial="hidden"
+                    animate="show"
+                    className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                >
                     {products.map(product => (
                         <ProductCard
                             key={product.id}
@@ -33,7 +52,7 @@ const Home = () => {
                             rating={product.rating}
                         />
                     ))}
-                </div>
+                </motion.div>
             </div>
         </div>
     );
